@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuestionsController;
+use App\Http\Controllers\ShopifyController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -20,9 +22,9 @@ Route::get('/products', function () {
     return view('products');
 })->middleware(['verify.shopify'])->name('products');
 
-Route::get('/questions', [\App\Http\Controllers\QuestionsController::class, 'showQuestions'])->name('view-questions');
-Route::get('/add-questions', [\App\Http\Controllers\QuestionsController::class, 'addQuestions'])->name('add-questions');
-Route::post('/save-questions', [\App\Http\Controllers\QuestionsController::class, 'saveQuestions'])->name('save-questions');
+Route::get('/questions', [QuestionsController::class, 'showQuestions'])->name('view-questions');
+Route::get('/add-questions', [QuestionsController::class, 'addQuestions'])->name('add-questions');
+Route::post('/save-questions', [QuestionsController::class, 'saveQuestions'])->name('save-questions');
 
-Route::get('shopify', '\App\Http\Controllers\ShopifyController@index')->middleware(['verify.shopify']);
+Route::get('shopify', [ShopifyController::class, 'index'])->middleware(['verify.shopify']);
 
